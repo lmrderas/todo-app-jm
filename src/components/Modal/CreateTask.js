@@ -23,7 +23,6 @@ function CreateTask({ modal, toggle }) {
       description: task.description,
       DueIn: task.DueIn,
     };
-
     services
       .createTask(data)
       .then((response) => {
