@@ -1,69 +1,112 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import services from '../../services/services';
+function CreateTask({ modal, toggle }) {
+  const initialState = {
+    id: null,
+    name: '',
+    description: '',
+    DueIn: '',
+    isDone: false,
+  };
+  const [task, setTask] = useState(initialState);
+  const [submitted, setSubmitted] = useState(false);
 
-function CreateTask({ modal, toggle, save }) {
-  const [task, setTask] = useState('');
-  const [descrption, setDescription] = useState('');
-  const [dueIn, setdueIn] = useState('');
-
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    if (name === 'task') {
-      setTask(value);
-    } else if (name === 'description') {
-      setDescription(value);
-    } else if (name === 'dueIn') {
-      setdueIn(value);
-    }
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setTask({ ...task, [name]: value });
   };
 
-  const handleSave = () => {
-    let taskObj = {};
-    taskObj['name'] = task;
-    taskObj['description'] = descrption;
-    taskObj['dueDate'] = dueIn;
+  const saveTutorial = () => {
+    var data = {
+      name: task.name,
+      description: task.description,
+      DueIn: task.DueIn,
+    };
+
+    services
+      .createTask(data)
+      .then((response) => {
+        setTask({
+          id: response.data.id,
+          name: response.data.name,
+          description: response.data.description,
+          DueIn: response.data.dueDate,
+        });
+        setSubmitted(true);
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const newTutorial = () => {
+    setTask(initialState);
+    setSubmitted(false);
   };
   return (
     <div>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Create Task</ModalHeader>
         <ModalBody>
-          <form>
-            <div className="form-group">
-              <h3>Name of task</h3>
-              <input
-                type="text"
-                name="task"
-                className="form-control"
-                value={task}
-                onChange={handleChange}
-              ></input>
-            </div>
-            <div className="form-group">
-              <h3>Description</h3>
-              <textarea
-                rows="7"
-                name="description"
-                className="form-control"
-                value={descrption}
-                onChange={handleChange}
-              ></textarea>
-            </div>
-            <div className="form-group">
-              <h3>Due In</h3>
-              <input
-                type="date"
-                name="dueIn"
-                className="form-control"
-                value={dueIn}
-                onChange={handleChange}
-              ></input>
-            </div>
-          </form>
+          <div className="submit-form">
+            {submitted ? (
+              <div>
+                <h4>You submitted successfully!</h4>
+                <button className="btn btn-success" onClick={newTutorial}>
+                  Add
+                </button>
+              </div>
+            ) : (
+              <div>
+                <div className="form-group">
+                  <label htmlFor="name">Task Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    required
+                    value={task.name}
+                    onChange={handleInputChange}
+                    name="name"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="description">Description</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="description"
+                    required
+                    value={task.description}
+                    onChange={handleInputChange}
+                    name="description"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="description">Due Date</label>
+                  <input
+                    type="date"
+                    className="form-control"
+                    id="DueIn"
+                    required
+                    value={task.DueIn}
+                    onChange={handleInputChange}
+                    name="DueIn"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={handleSave}>
+          <Button
+            color="primary"
+            onClick={saveTutorial}
+            className="btn btn-success"
+          >
             Create
           </Button>{' '}
           <Button color="secondary" onClick={toggle}>

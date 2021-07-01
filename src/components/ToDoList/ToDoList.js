@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import CreateTask from '../Modal/CreateTask';
-import services from '../../services/services';
 
 function ToDoList() {
   const [modal, setModal] = useState(false);
-  const [taskList, setTaskList] = useState([]);
   const toggle = () => setModal(!modal);
-  const saveTask = (taskObj) => {};
+
+  const completeTask = (id, taskObj) => {};
+  const deleteTask = (id) => {};
+  const getTaskList = () => {};
+  const getTask = () => {};
+
   return (
     <>
       <div className="header text-center">
@@ -15,7 +18,7 @@ function ToDoList() {
           Create Task
         </button>
       </div>
-      <CreateTask toggle={toggle} modal={modal} save={saveTask}></CreateTask>
+      <CreateTask toggle={toggle} modal={modal}></CreateTask>
     </>
   );
 }
