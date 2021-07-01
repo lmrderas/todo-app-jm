@@ -17,7 +17,7 @@ function CreateTask({ modal, toggle }) {
     setTask({ ...task, [name]: value });
   };
 
-  const saveTutorial = () => {
+  const saveTask = () => {
     var data = {
       name: task.name,
       description: task.description,
@@ -41,7 +41,7 @@ function CreateTask({ modal, toggle }) {
       });
   };
 
-  const newTutorial = () => {
+  const newTask = () => {
     setTask(initialState);
     setSubmitted(false);
   };
@@ -54,7 +54,7 @@ function CreateTask({ modal, toggle }) {
             {submitted ? (
               <div>
                 <h4>You submitted successfully!</h4>
-                <button className="btn btn-success" onClick={newTutorial}>
+                <button className="btn btn-success" onClick={newTask}>
                   Add
                 </button>
               </div>
@@ -104,7 +104,7 @@ function CreateTask({ modal, toggle }) {
         <ModalFooter>
           <Button
             color="primary"
-            onClick={saveTutorial}
+            onClick={saveTask}
             className="btn btn-success"
           >
             Create
