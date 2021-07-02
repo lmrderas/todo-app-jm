@@ -12,7 +12,7 @@
 
 .card-wrapper {
   width: 270px;
-  height: 250px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   background-color: burlywood;
@@ -50,4 +50,15 @@
   flex-wrap: wrap;
   background-color: #f6f7f8;
   padding: 40px 100px;
+}
+
+.list {
+  display: flex;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-radius: 0.25rem;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 4rem;
 }

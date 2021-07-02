@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from 'reactstrap';
-import services from '';
-function ToDoItem({ taskObj, index }) {
+import services from '../../services/services';
+import Moment from 'moment';
+
+function ToDo({ taskObj, index }) {
   const completeTask = () => {
+    let task = taskObj;
+    task.isDone = true;
     services
-      .completeTask(index, taskObj)
+      .completeTask(task)
       .then((response) => {
         console.log(response.data);
-        alert('The task was updated successfully!');
+        alert('The task was completed!');
       })
       .catch((e) => {
         console.log(e);
@@ -19,7 +23,8 @@ function ToDoItem({ taskObj, index }) {
       .deleteTask(index)
       .then((response) => {
         console.log(response.data);
-        alert('The task was completed!');
+        alert('The task was deleted!');
+        window.location.reload();
       })
       .catch((e) => {
         console.log(e);
@@ -27,11 +32,14 @@ function ToDoItem({ taskObj, index }) {
   };
 
   return (
-    <div class="card-wrapper mr-5">
-      <div class="task-holder">
-        <p class="cards-headers">{taskObj.name}</p>
+    <div className="card-wrapper mr-5">
+      <div className="task-holder">
+        <p className="cards-headers">{taskObj.name}</p>
         <p className="mt-4">{taskObj.description}</p>
-        <p className="mt-1">{taskObj.dueDate}</p>
+        <p className="mt-1">
+          {Moment(taskObj.dueDate).format('MMMM dS, yyyy')}
+        </p>
+        <p className="mt-1">{taskObj.isDone ? 'Completed' : 'not Completed'}</p>
 
         <div style={{ position: 'absolute', right: '20px', bottom: '20px' }}>
           <Button
@@ -50,4 +58,4 @@ function ToDoItem({ taskObj, index }) {
   );
 }
 
-export default ToDoItem;
+export default ToDo;

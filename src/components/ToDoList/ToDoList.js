@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CreateTask from '../Modal/CreateTask';
 import services from '../../services/services';
-import ToDoItem from '../ToDoItem/ToDoItems';
+import ToDo from '../ToDoItem/ToDo';
 
 function ToDoList() {
   const [modal, setModal] = useState(false);
@@ -31,11 +31,9 @@ function ToDoList() {
         </button>
       </div>
       <div>
-        <ul className="list-group">
+        <ul className="list">
           {tasks &&
-            tasks.map((task, index) => (
-              <ToDoItem taskObj={task} index={index} />
-            ))}
+            tasks.map((task, index) => <ToDo taskObj={task} index={index} />)}
         </ul>
       </div>
       <CreateTask toggle={toggle} modal={modal}></CreateTask>

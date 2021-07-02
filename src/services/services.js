@@ -13,8 +13,8 @@ class DataService {
     return httpCommon.post('/todo', data);
   }
 
-  completeTask(id, data) {
-    return httpCommon.put(`/todo/${id}`, data);
+  completeTask(data) {
+    return httpCommon.put('/todo', data);
   }
 
   deleteTask(id) {
