@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'reactstrap';
 import services from '';
-function Card({ taskObj, index }) {
+function ToDoItem({ taskObj, index }) {
   const completeTask = () => {
     services
       .completeTask(index, taskObj)
@@ -14,9 +14,9 @@ function Card({ taskObj, index }) {
       });
   };
 
-  const deleteTask = (id) => {
+  const deleteTask = () => {
     services
-      .completeTask(index)
+      .deleteTask(index)
       .then((response) => {
         console.log(response.data);
         alert('The tutorial was completed!');
@@ -51,4 +51,4 @@ function Card({ taskObj, index }) {
   );
 }
 
-export default Card;
+export default ToDoItem;
