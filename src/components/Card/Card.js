@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'reactstrap';
 import services from '';
-function ToDoItem({ taskObj, index }) {
+function Card({ taskObj, index }) {
   const completeTask = () => {
     services
       .completeTask(index, taskObj)
@@ -51,4 +51,4 @@ function ToDoItem({ taskObj, index }) {
   );
 }
 
-export default ToDoItem;
+export default Card;
