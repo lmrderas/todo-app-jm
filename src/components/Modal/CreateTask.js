@@ -7,7 +7,6 @@ function CreateTask({ modal, toggle }) {
     name: '',
     description: '',
     DueIn: '',
-    isDone: false,
   };
   const [task, setTask] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
@@ -27,10 +26,10 @@ function CreateTask({ modal, toggle }) {
       .createTask(data)
       .then((response) => {
         setTask({
-          id: response.data.id,
-          name: response.data.name,
-          description: response.data.description,
-          DueIn: response.data.dueDate,
+          id: response.data.data.id,
+          name: response.data.data.name,
+          description: response.data.data.description,
+          DueIn: response.data.data.dueDate,
         });
         setSubmitted(true);
         console.log(response.data);
