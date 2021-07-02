@@ -7,7 +7,7 @@ function ToDoItem({ taskObj, index }) {
       .completeTask(index, taskObj)
       .then((response) => {
         console.log(response.data);
-        alert('The tutorial was updated successfully!');
+        alert('The task was updated successfully!');
       })
       .catch((e) => {
         console.log(e);
@@ -19,7 +19,7 @@ function ToDoItem({ taskObj, index }) {
       .deleteTask(index)
       .then((response) => {
         console.log(response.data);
-        alert('The tutorial was completed!');
+        alert('The task was completed!');
       })
       .catch((e) => {
         console.log(e);
@@ -32,7 +32,6 @@ function ToDoItem({ taskObj, index }) {
         <p class="cards-headers">{taskObj.name}</p>
         <p className="mt-4">{taskObj.description}</p>
         <p className="mt-1">{taskObj.dueDate}</p>
-        <p className="mt-1">{taskObj.isDone}</p>
 
         <div style={{ position: 'absolute', right: '20px', bottom: '20px' }}>
           <Button

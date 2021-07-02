@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CreateTask from '../Modal/CreateTask';
 import services from '../../services/services';
-import ToDoItem from '../ToDoItem/ToDoItem';
+import ToDoItem from '../ToDoItem/ToDoItems';
 
 function ToDoList() {
   const [modal, setModal] = useState(false);
