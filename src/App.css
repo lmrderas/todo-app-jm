@@ -12,12 +12,13 @@
 
 .card-wrapper {
   width: 270px;
-  height: 300px;
+  height: 410px;
   display: flex;
+  margin-left: 5rem;
   flex-direction: column;
-  background-color: burlywood;
+  background-color: wheat;
   color: black;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 .card-top {
@@ -57,7 +58,7 @@
   padding-left: 0;
   margin-bottom: 0;
   border-radius: 0.25rem;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   flex-direction: row;
   margin-top: 4rem;

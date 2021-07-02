@@ -65,6 +65,7 @@ function CreateTask({ modal, toggle }) {
                     className="form-control"
                     id="name"
                     required
+                    maxlength="100"
                     value={task.name}
                     onChange={handleInputChange}
                     name="name"
@@ -78,6 +79,7 @@ function CreateTask({ modal, toggle }) {
                     className="form-control"
                     id="description"
                     required
+                    maxlength="500"
                     value={task.description}
                     onChange={handleInputChange}
                     name="description"
